@@ -10,6 +10,7 @@ class AppTheme {
     primaryColor: primaryColor,
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(color: white),
       color: primaryColor,
       centerTitle: true,
       titleTextStyle: TextStyle(

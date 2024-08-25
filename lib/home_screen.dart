@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/apptheme.dart';
 import 'package:news_app/category/category_grid.dart';
+import 'package:news_app/drawer/home_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body:const CategoryGrid(),
-
+          drawer: const HomeDrawer(),
       ),
     );
   }
