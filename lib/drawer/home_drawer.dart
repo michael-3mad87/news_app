@@ -4,8 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:news_app/apptheme.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
-
+  const HomeDrawer({
+    super.key,
+    required this.onItemSelected,
+  });
+  final void Function(DrawerItem) onItemSelected;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -31,11 +34,16 @@ class HomeDrawer extends StatelessWidget {
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {
+                        onItemSelected(DrawerItem.categories);
+                      },
                       child: Row(
                         children: [
-                         const Icon(Icons.menu , size: 28,),
-                         const SizedBox(
+                          const Icon(
+                            Icons.menu,
+                            size: 28,
+                          ),
+                          const SizedBox(
                             width: 16,
                           ),
                           Text(
@@ -46,16 +54,20 @@ class HomeDrawer extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 12,),
+                    const SizedBox(
+                      height: 12,
+                    ),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: () {
+                        onItemSelected(DrawerItem.settings);
+                      },
                       child: Row(
                         children: [
-                       const Icon(
+                          const Icon(
                             Icons.settings,
                             size: 28,
                           ),
-                         const SizedBox(
+                          const SizedBox(
                             width: 16,
                           ),
                           Text(
@@ -75,4 +87,9 @@ class HomeDrawer extends StatelessWidget {
       ),
     );
   }
+}
+
+enum DrawerItem {
+  categories,
+  settings;
 }
