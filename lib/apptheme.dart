@@ -6,6 +6,8 @@ class AppTheme {
   static const Color navy = Color(0xff4F5A69);
   static const Color white = Color(0xffffffff);
   static const Color red = Color(0xffC91C22);
+  static const Color grey = Color(0xff79828B);
+  static const Color grey2 = Color(0xff42505C);
   static ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
     scaffoldBackgroundColor: Colors.transparent,
@@ -31,6 +33,11 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: white,
       ),
+      titleSmall: TextStyle(
+        fontSize: 14 ,
+        fontWeight: FontWeight.w400,
+        color: black
+      )
     ),
   );
   static ThemeData darkTheme = ThemeData();
