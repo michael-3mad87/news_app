@@ -13,17 +13,16 @@ class TabItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:const EdgeInsetsDirectional.symmetric(vertical: 10),
-      padding:const EdgeInsetsDirectional.symmetric(vertical: 6, horizontal: 12),
-
+      margin: const EdgeInsetsDirectional.symmetric(vertical: 10),
+      padding:
+          const EdgeInsetsDirectional.symmetric(vertical: 6, horizontal: 12),
       decoration: BoxDecoration(
-        color: isSelected ? AppTheme.primaryColor : Colors.transparent,
-      borderRadius:const BorderRadius.all(Radius.circular(25)),
-      border: Border.all(
-        color: AppTheme.primaryColor,
-        width: 2,
-      )
-      ),
+          color: isSelected ? AppTheme.primaryColor : Colors.transparent,
+          borderRadius: const BorderRadius.all(Radius.circular(25)),
+          border: Border.all(
+            color: AppTheme.primaryColor,
+            width: 2,
+          )),
       child: Text(
         source,
         style: Theme.of(context).textTheme.titleSmall?.copyWith(

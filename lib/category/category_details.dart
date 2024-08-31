@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:news_app/news/news_item.dart';
-import 'package:news_app/tabs/tab_item.dart';
+import 'package:news_app/api/api_services.dart';
+import 'package:news_app/tabs/source_tap.dart';
+import 'package:news_app/widgets/error_state.dart';
+import 'package:news_app/widgets/loading_state.dart';
 
 class CategoryDetails extends StatefulWidget {
   const CategoryDetails(
@@ -17,38 +19,20 @@ class CategoryDetails extends StatefulWidget {
 
 class _CategoryDetailsState extends State<CategoryDetails> {
   final sources = List.generate(10, (index) => 'source$index');
-  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DefaultTabController(
-          length: sources.length,
-          child: TabBar(
-            tabAlignment: TabAlignment.start,
-            isScrollable: true,
-            indicatorColor: Colors.transparent,
-            dividerColor: Colors.transparent,
-            onTap: (index) => setState(() {
-              selectedIndex = index;
-            }),
-            tabs: sources
-                .map((source) => TabItem(
-                      isSelected: sources.indexOf(source) == selectedIndex,
-                      source: source,
-                    ))
-                .toList(),
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return NewsItem() ;
-            },
-          ),
-        ),
-      ],
-    );
+    return FutureBuilder(
+        future: APIservices.getSources(widget.categoryId),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return LoadingState();
+          } else if (snapshot.hasError || snapshot.data?.status != 'ok') {
+            return ErrorState();
+          } else {
+            final sources = snapshot.data?.sources ?? [];
+            return SourceTap(sources);
+          }
+        });
   }
 }

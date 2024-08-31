@@ -12,13 +12,12 @@ class NewsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-     routes: {
-        HomeScreen.routName :(_) => HomeScreen() , 
-     },
-     theme: AppTheme.lightTheme,
-     darkTheme: AppTheme.darkTheme,
-     themeMode: ThemeMode.light,
+      routes: {
+        HomeScreen.routName: (_) => HomeScreen(),
+      },
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
     );
   }
 }
-

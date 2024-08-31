@@ -21,14 +21,14 @@ class CategoryItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Flexible(  
+          Flexible(
             child: Image.asset(
               categoryModel.image,
-              fit: BoxFit.contain,  
+              fit: BoxFit.contain,
               height: MediaQuery.of(context).size.height * 0.12,
             ),
           ),
-         const SizedBox(height: 8),  
+          const SizedBox(height: 8),
           Text(
             categoryModel.title,
             style: Theme.of(context)
