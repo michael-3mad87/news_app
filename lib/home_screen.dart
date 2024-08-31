@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   controller: searchController,
                   decoration: const InputDecoration(
-                    hintText: 'Search Article',
+                    hintText: 'Search News',
                     hintStyle: TextStyle(color: AppTheme.white),
                     border: InputBorder.none,
                   ),
