@@ -12,8 +12,8 @@ class CategoryItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: categoryModel.color,
         borderRadius: BorderRadiusDirectional.only(
-          topStart: Radius.circular(25),
-          topEnd: Radius.circular(25),
+          topStart: const Radius.circular(25),
+          topEnd: const Radius.circular(25),
           bottomEnd: Radius.circular(index.isOdd ? 25 : 0),
           bottomStart: Radius.circular(index.isEven ? 25 : 0),
         ),

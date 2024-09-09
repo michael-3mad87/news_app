@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/apptheme.dart';
 import 'package:news_app/models/news_respones/news_respones.dart';
@@ -10,7 +9,7 @@ class SearchResultUI extends StatelessWidget {
     required this.newsRespones,
   });
 
-  final NewsRespones? newsRespones;
+  final NewsResponse? newsRespones;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class SearchResultUI extends StatelessWidget {
       itemBuilder: (context, index) {
         final news = newsRespones!.articles![index];
         final titleSmall = Theme.of(context).textTheme.titleSmall;
-    
+
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
           child: Column(
@@ -28,7 +27,8 @@ class SearchResultUI extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 child: Image.network(
-                  news.urlToImage ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                  news.urlToImage ??
+                      'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * .3,
                   fit: BoxFit.fill,
@@ -52,7 +52,8 @@ class SearchResultUI extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: Text(
-                  timeago.format(DateTime.now()), // Ensure this uses the correct time
+                  timeago.format(
+                      DateTime.now()), // Ensure this uses the correct time
                   style: titleSmall?.copyWith(
                     color: AppTheme.grey,
                   ),

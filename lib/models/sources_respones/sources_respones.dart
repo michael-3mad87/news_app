@@ -1,13 +1,13 @@
 import 'source.dart';
 
-class SourcesRespones {
+class SourcesResponse {
   final String? status;
   final List<Source>? sources;
 
-  const SourcesRespones({this.status, this.sources});
+  const SourcesResponse({this.status, this.sources});
 
-  factory SourcesRespones.fromJson(Map<String, dynamic> json) {
-    return SourcesRespones(
+  factory SourcesResponse.fromJson(Map<String, dynamic> json) {
+    return SourcesResponse(
       status: json['status'] as String?,
       sources: (json['sources'] as List<dynamic>?)
           ?.map((e) => Source.fromJson(e as Map<String, dynamic>))

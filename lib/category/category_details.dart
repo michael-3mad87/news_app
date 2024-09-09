@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/api/api_services.dart';
@@ -26,9 +26,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         future: APIservices.getSources(widget.categoryId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return LoadingState();
+            return const LoadingState();
           } else if (snapshot.hasError || snapshot.data?.status != 'ok') {
-            return ErrorState();
+            return const ErrorState();
           } else {
             final sources = snapshot.data?.sources ?? [];
             return SourceTap(sources);

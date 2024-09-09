@@ -11,14 +11,14 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: APIservices.getNsws(sourceId),
+        future: APIservices.getNews(sourceId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const LoadingState();
           } else if (snapshot.hasError || snapshot.data?.status != 'ok') {
             return const ErrorState();
           } else {
-            final newsList = snapshot.data?.articles??[];
+            final newsList = snapshot.data?.articles ?? [];
             return ListView.builder(
               itemCount: newsList.length,
               itemBuilder: (_, int index) {
