@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/models/sources_respones/source.dart';
-import 'package:news_app/news/news_list.dart';
-import 'package:news_app/tabs/tab_item.dart';
-
+import 'package:news_app/news/view/widget/news_list.dart';
+import 'package:news_app/sources/data/models/source.dart';
+import 'package:news_app/sources/view/widgets/tab_item.dart';
 class SourceTap extends StatefulWidget {
   const SourceTap(this.sources, {super.key});
   final List<Source> sources;

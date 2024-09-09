@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/apptheme.dart';
-import 'package:news_app/category/category_item.dart';
-import 'package:news_app/models/category_Model.dart';
+import 'package:news_app/shared/app_theme.dart';
+import 'package:news_app/categories/views/widget/category_item.dart';
+import 'package:news_app/categories/data/model/category_model.dart';
 
 class CategoryGrid extends StatelessWidget {
   const CategoryGrid({super.key, required this.onCategorySelected});

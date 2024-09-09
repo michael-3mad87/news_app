@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/apptheme.dart';
-import 'package:news_app/models/news_respones/news_respones.dart';
+import 'package:news_app/news/data/models/news.dart';
+import 'package:news_app/shared/app_theme.dart';
+import 'package:news_app/news/data/models/news_response.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class SearchResultUI extends StatelessWidget {
   const SearchResultUI({
     super.key,
-    required this.newsRespones,
+    required this.news,
   });
 
-  final NewsResponse? newsRespones;
+  final List<News> news;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: newsRespones?.articles?.length,
+      itemCount: news.length,
       itemBuilder: (context, index) {
-        final news = newsRespones!.articles![index];
+        final article = news[index];
         final titleSmall = Theme.of(context).textTheme.titleSmall;
 
         return Padding(
@@ -27,7 +28,7 @@ class SearchResultUI extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 child: Image.network(
-                  news.urlToImage ??
+                  article.urlToImage ??
                       'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * .3,
@@ -36,14 +37,14 @@ class SearchResultUI extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                news.source?.name ?? '',
+                article.author ?? '',
                 style: titleSmall?.copyWith(
                   color: AppTheme.grey,
                   fontSize: 10,
                 ),
               ),
               Text(
-                news.title ?? '',
+                article.title ?? '',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppTheme.grey2,
                       fontWeight: FontWeight.w500,

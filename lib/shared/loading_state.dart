@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/apptheme.dart';
+import 'package:news_app/shared/app_theme.dart';
 
 class LoadingState extends StatelessWidget {
   const LoadingState({super.key});

@@ -1,8 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:news_app/apptheme.dart';
-import 'package:news_app/models/news_respones/news.dart';
+import 'package:news_app/shared/app_theme.dart';
+import 'package:news_app/news/data/models/news.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
