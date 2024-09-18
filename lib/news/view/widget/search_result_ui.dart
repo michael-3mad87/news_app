@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/news/data/models/news.dart';
 import 'package:news_app/shared/app_theme.dart';
-import 'package:news_app/news/data/models/news_response.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class SearchResultUI extends StatelessWidget {

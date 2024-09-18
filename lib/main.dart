@@ -17,9 +17,10 @@ class NewsApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeScreen.routeName: (_) => ChangeNotifierProvider(
-          create: (_) => NewsViewModel(),
-          child: const HomeScreen()),
-        NewsDetails.routeName:(_)=> const NewsDetails(),
+              create: (_) => NewsViewModel(),
+              child: const HomeScreen(),
+            ),
+        NewsDetails.routeName: (_) => const NewsDetails(),
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

@@ -1,10 +1,10 @@
-class Source {
+class Sources {
   final String? id;
   final String? name;
 
-  const Source({this.id, this.name});
+  const Sources({this.id, this.name});
 
-  factory Source.fromJson(Map<String, dynamic> json) => Source(
+  factory Sources.fromJson(Map<String, dynamic> json) => Sources(
         id: json['id'] as String?,
         name: json['name'] as String?,
       );

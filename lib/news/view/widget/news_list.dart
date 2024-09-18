@@ -36,24 +36,6 @@ class _NewsListState extends State<NewsList> {
               } 
           },
         )
-
-        //  FutureBuilder(
-        //     future: APIservices.getNews(sourceId),
-        //     builder: (context, snapshot) {
-        //       if (snapshot.connectionState == ConnectionState.waiting) {
-        //         return const LoadingState();
-        //       } else if (snapshot.hasError || snapshot.data?.status != 'ok') {
-        //         return const ErrorState();
-        //       } else {
-        //         final newsList = snapshot.data?.articles ?? [];
-        //         return ListView.builder(
-        //           itemCount: newsList.length,
-        //           itemBuilder: (_, int index) {
-        //             return NewsItem(newsList[index]);
-        //           },
-        //         );
-        //       }
-        //     });
         );
   }
 }
