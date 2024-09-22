@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/sources/data/models/source.dart';
 import 'package:news_app/sources/data/repository/sources_repository.dart';
-import 'package:news_app/sources/services_locator.dart';
+import 'package:news_app/shared/services_locator.dart';
 
 class SourcesViewModel extends ChangeNotifier {
   final SourcesRepository repository;

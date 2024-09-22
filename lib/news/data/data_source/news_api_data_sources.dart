@@ -23,11 +23,4 @@ class NewsAPIDataSources extends NewsDataSources {
     }
   }
 
-  Future<NewsResponse> searchNews(String query) async {
-    final uri = Uri.https(APIConstant.baseUrl, APIConstant.newsEndpoint,
-        {'apiKey': APIConstant.apiKey, 'q': query});
-    final response = await http.get(uri);
-    final json = jsonDecode(response.body);
-    return NewsResponse.fromJson(json);
-  }
 }
