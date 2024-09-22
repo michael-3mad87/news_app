@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:news_app/sources/view/widgets/source_tap.dart';
-import 'package:news_app/sources/view_model/sources_view_model.dart';
 import 'package:news_app/shared/error_state.dart';
 import 'package:news_app/shared/loading_state.dart';
+import 'package:news_app/sources/view_model/cubit/sources_view_model_cubit.dart';
 import 'package:provider/provider.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -19,7 +20,7 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  final sourcesViewModel = SourcesViewModel();
+  final sourcesViewModel = SourcesCubit();
   @override
   void initState() {
     super.initState();
@@ -28,16 +29,18 @@ class _CategoryDetailsState extends State<CategoryDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return BlocProvider(
       create: (_) => sourcesViewModel,
-      child: Consumer<SourcesViewModel>(
-        builder: (_, sourcesViewModel, __) {
-          if (sourcesViewModel.isLoading) {
-           return const LoadingState();
-          } else if (sourcesViewModel.errorMessage != null) {
-           return const ErrorState();
+      child: BlocBuilder<SourcesCubit, SourcesState>(
+        builder: (context, state) {
+          if (state is SourcesLoading) {
+            return const LoadingState();
+          } else if (state is SourcesError) {
+            return const ErrorState();
+          } else if (state is SourcesSuccess) {
+            return SourceTap(state.sources);
           } else {
-           return SourceTap(sourcesViewModel.sources);
+            return  const SizedBox();
           }
         },
       ),

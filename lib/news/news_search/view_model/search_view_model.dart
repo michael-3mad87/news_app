@@ -1,35 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:news_app/news/data/models/news.dart';
-import 'package:news_app/news/news_search/data_source/search_data_source.dart';
-import 'package:news_app/shared/services_locator.dart';
+// import 'package:flutter/material.dart';
+// import 'package:news_app/news/data/models/news.dart';
 
-class SearchViewModel with ChangeNotifier {
-  SearchAPIDataSources searchAPIDataSources;
+// import 'package:news_app/news/news_search/data/repository/search_repository.dart';
+// import 'package:news_app/shared/services_locator.dart';
 
-  SearchViewModel()
-      : searchAPIDataSources = ServicesLocator.searchAPIDataSources;
+// class SearchViewModel with ChangeNotifier {
+//   SearchRepository repository;
 
-  List<News> searchResults = [];
-  bool isLoading = false;
-  String? errorMessage;
+//   SearchViewModel()
+//       : repository = SearchRepository(ServicesLocator.searchAPIDataSources);
 
-  Future<void> searchNews(String query) async {
-    _setLoading(true);
-    try {
-      final response = await searchAPIDataSources.searchNews(query);
-      if (response.status == 'ok' && response.articles != null) {
-        searchResults = response.articles!;
-      } else {
-        errorMessage = 'No results found';
-      }
-    } on Exception catch (e) {
-      errorMessage = e.toString();
-    }
-    _setLoading(false);
-  }
+//   List<News> searchResults = [];
+//   bool isLoading = false;
+//   String? errorMessage;
 
-  void _setLoading(bool value) {
-    isLoading = value;
-    notifyListeners();
-  }
-}
+//   Future<void> searchNews(String query) async {
+//     _setLoading(true);
+//     try {
+//       searchResults = await repository.searchNews(query);
+//     } on Exception catch (e) {
+//       errorMessage = e.toString();
+//     }
+//     _setLoading(false);
+//   }
+
+//   void _setLoading(bool value) {
+//     isLoading = value;
+//     notifyListeners();
+//   }
+// }

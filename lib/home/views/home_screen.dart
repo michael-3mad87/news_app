@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/news/news_search/view_model/search_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/news/news_search/view_model/cubit/search_cubit.dart';
 import 'package:news_app/shared/app_theme.dart';
 import 'package:news_app/home/widgets/drawer/home_drawer.dart';
 import 'package:news_app/categories/views/widget/category_details.dart';
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   CategoryModel? selectedCategory;
 
   Future<void> onSubmitted(String query) async {
-    await Provider.of<SearchViewModel>(context, listen: false).searchNews(query);
+    BlocProvider.of<SearchCubit>(context).searchNews(query);
   }
 
   void onDrawerItemSelected(DrawerItem drawerItem) {
@@ -43,8 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final searchViewModel = Provider.of<SearchViewModel>(context);
-
     return Container(
       decoration: const BoxDecoration(
         color: AppTheme.white,
@@ -75,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     setState(() {
                       isSearching = false;
                       searchController.clear();
-                      searchViewModel.searchResults = [];
+                      BlocProvider.of<SearchCubit>(context).emit(SearchInitial());
                     });
                   },
                 )
@@ -94,28 +92,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: searchViewModel.isLoading
-            ? const LoadingState()
-            : searchViewModel.searchResults.isNotEmpty
-                ? searchResult(searchViewModel)
-                : selectedCategory != null
-                    ? CategoryDetails(selectedCategory!.id)
-                    : selectedDrawerItem == DrawerItem.categories
-                        ? CategoryGrid(onCategorySelected: onCategorySelected)
-                        : const SettingTap(),
+        body: BlocBuilder<SearchCubit, SearchState>(
+          builder: (context, state) {
+            if (state is SearchLoading) {
+              return const LoadingState();
+            } else if (state is SearchSuccess) {
+              return SearchResultUI(news: state.searchNews);
+            } else if (state is SearchError) {
+              return Center(child: Text(state.errorMessage));
+            } else {
+              return selectedCategory != null
+                  ? CategoryDetails(selectedCategory!.id)
+                  : selectedDrawerItem == DrawerItem.categories
+                      ? CategoryGrid(onCategorySelected: onCategorySelected)
+                      : const SettingTap();
+            }
+          },
+        ),
         drawer: HomeDrawer(onItemSelected: onDrawerItemSelected),
       ),
     );
-  }
-
-  Widget searchResult(SearchViewModel searchViewModel) {
-    if (searchViewModel.searchResults.isEmpty &&
-        searchViewModel.errorMessage != null) {
-      return Center(
-        child: Text(searchViewModel.errorMessage!),
-      );
-    }
-
-    return SearchResultUI(news: searchViewModel.searchResults);
   }
 }
